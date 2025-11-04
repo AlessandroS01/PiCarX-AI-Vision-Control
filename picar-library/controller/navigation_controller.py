@@ -8,7 +8,13 @@ class NavigationController:
         self.navigation = Navigation()
 
     def perform_action(self, action: Action):
-        """Performs action according to the predicted action"""
+        """
+            Performs action according to the predicted action
+
+        Args:
+            action: Action to perform
+        """
+
         if action == Action.FORWARD:
             self.navigation.forward()
         elif action == Action.BACKWARD:
@@ -21,8 +27,13 @@ class NavigationController:
             self.navigation.turn(Action.RIGHT, angle)
         self.navigation.stop()
 
-    def angle_retrieval(self, action):
-        """Handler for steering angle prediction according to the given action"""
+    def angle_retrieval(self, action: Action):
+        """
+            Handler for steering angle prediction according to the given action
+
+        Args:
+            action: Action to perform
+        """
         angle = 10
 
         # TODO implement how to handle angle creation here

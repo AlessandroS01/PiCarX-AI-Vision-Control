@@ -20,5 +20,11 @@ class Navigation:
         self.movement.backward()
 
     def turn(self, direction, angle):
-        """Turns the car in the specified direction by the given angle"""
+        """
+            Turns the car in the specified direction by the given angle
+
+        Args:
+            direction (Action): Direction to turn ('LEFT' or 'RIGHT')
+            angle (int): Angle in degrees to turn
+        """
         self.movement.turn(direction, angle)

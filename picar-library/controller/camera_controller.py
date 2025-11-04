@@ -7,7 +7,13 @@ class CameraController:
         self.vision = VisionSystem()
 
     def predict_action(self):
-        """Make driving decisions based on vision model predictions"""
+        """
+        Make driving decisions based on vision model predictions
+
+
+        Returns:
+            Action: The action decided based on vision prediction.
+        """
         prediction = self.vision.get_prediction()
 
         # TODO Decision-making logic can be implemented here
