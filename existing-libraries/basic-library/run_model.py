@@ -22,7 +22,7 @@ from display import Display              # Provides both local and web-based vid
 from pygame import time                  # Used for frame rate timing
 from pygame import mixer                 # For potential sound effects (not used here)
 from robot_hat import PWM, Music, Buzzer, set_volume, enable_speaker, disable_speaker
-                                         # Hardware control and audio (speaker, PWM, etc.)
+                                         # hardware control and audio (speaker, PWM, etc.)
 import os
 import numpy as np
 import cv2                               # For image resizing and frame encoding
