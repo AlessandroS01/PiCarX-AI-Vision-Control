@@ -3,7 +3,7 @@ from .preprocessing import preprocess_image
 from .detection import CheckpointDetector, ObjectDetector
 
 class VisionSystem:
-    """Top-level Vision controller that integrates capture and detection."""
+    """Top-level vision controller that integrates capture and detection."""
 
     def __init__(self):
         self.camera = CameraInterface()

@@ -1,7 +1,7 @@
-from Hardware.camera import Camera
+from hardware.camera import Camera
 
 class CameraInterface:
-    """Interface between Vision module and Hardware.Camera."""
+    """Interface between vision module and hardware.Camera."""
 
     def __init__(self, resolution=(640, 480)):
         self.camera = Camera(resolution=resolution)

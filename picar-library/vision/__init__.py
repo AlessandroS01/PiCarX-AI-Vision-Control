@@ -1,16 +1,16 @@
 """
-Vision Module for PiCarX-AI-Vision-Control
+vision Module for PiCarX-AI-vision-Control
 
 Provides computer vision capabilities including:
 - Camera interface (image capture)
 - Preprocessing (filtering, normalization)
 - Detection (checkpoints, letters, obstacles)
 - Tracking (object motion tracking)
-- VisionSystem (high-level interface for Controller)
+- VisionSystem (high-level interface for controller)
 
 Usage Example:
 ---------------
-from Vision import VisionSystem
+from vision import VisionSystem
 
 vision = VisionSystem()
 data = vision.get_prediction()
