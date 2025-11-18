@@ -1,0 +1,5 @@
+Epochs = 15
+Batch Size = 30
+lr = 0.01
+
+Did not include anything as performance is really bad

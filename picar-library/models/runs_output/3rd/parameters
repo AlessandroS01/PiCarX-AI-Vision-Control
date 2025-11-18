@@ -1,0 +1,6 @@
+Epochs = 25
+Batch Size = 25
+lr = 0.01
+
+Not great at detecting B (normal dataset).
+Augmented dataset works much better than any previous model.

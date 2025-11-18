@@ -1,0 +1,6 @@
+Epochs = 30
+Batch Size = 35
+lr = 0.01
+
+Normal dataset works badly.
+Augmented is working ok, but 3rd is better
