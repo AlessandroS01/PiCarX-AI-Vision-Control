@@ -7,4 +7,3 @@ smbus2
 pyaudio
 vilib
 picamera2
-libcamera
