@@ -1,8 +1,9 @@
-#from hardware.movement import Movement
+from hardware.movement import Movement
 import time
 from models.yolo import YOLOModel
 
-#from status.action import Action
+from status.action import Action
+from vision.detection import CheckpointDetector
 
 """def movement_test():
     move = Movement()
@@ -42,13 +43,16 @@ def training():
 
 
 if __name__=="__main__":
+    detector = CheckpointDetector()
+    detector.detect_checkpoint_video()
+
     # Testing code:
-    user_input = int(input("1. Check movement\n2. Train model\n"))
-    if user_input == 1:
-        print("remove the comment on function and import to make it work")
-        #movement_test()
-    elif user_input == 2:
-        training()
+    #user_input = int(input("1. Check movement\n2. Train model\n"))
+    #if user_input == 1:
+    #    print("remove the comment on function and import to make it work")
+    #    #movement_test()
+    #elif user_input == 2:
+    #    training()
 
 
 
