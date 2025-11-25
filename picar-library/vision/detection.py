@@ -46,13 +46,8 @@ class CheckpointDetector:
         [ {'label': 'A', 'position': (x, y), 'confidence': 0.9}, ... ]
         """
 
-        Vilib.camera_start(vflip=True, hflip=False)
-        Vilib.display(local=false, web=True)
-
-        detections_output = []  # final return list
-
         print("Starting Camera... Please wait.")
-        Vilib.camera_start(vflip=False, hflip=False)
+        Vilib.camera_start(vflip=True, hflip=False)
 
         # CRITICAL FIX: set local=False to prevent "qt.qpa.xcb" crash
         Vilib.display(local=False, web=True)
