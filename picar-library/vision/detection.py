@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 
+from sympy import false
 from ultralytics import YOLO
 from vilib import Vilib
 
@@ -46,51 +47,74 @@ class CheckpointDetector:
         """
 
         Vilib.camera_start(vflip=False, hflip=False)
-        Vilib.display(local=True, web=True)
+        Vilib.display(local=false, web=True)
 
         detections_output = []  # final return list
 
-        while True:
-            frame = Vilib.picam2.capture_array()
+        print("Starting Camera... Please wait.")
+        Vilib.camera_start(vflip=False, hflip=False)
 
-            results = self.model(frame)[0]  # YOLO inference
-            current_detections = []
+        # CRITICAL FIX: set local=False to prevent "qt.qpa.xcb" crash
+        Vilib.display(local=False, web=True)
 
-            for box in results.boxes:
-                x1, y1, x2, y2 = box.xyxy[0].tolist()
-                conf = float(box.conf[0])
-                cls = int(box.cls[0])
+        detections_output = []
 
-                # Label from your YOLO class names
-                label = self.model.names[cls]
+        try:
+            print("Detection loop started. Press Ctrl+C to stop.")
+            while True:
+                # Capture frame
+                frame = Vilib.picam2.capture_array()
 
-                # Compute center of bounding box (x, y)
-                cx = int((x1 + x2) / 2)
-                cy = int((y1 + y2) / 2)
+                if frame is None:
+                    continue
 
-                det = {
-                    "label": label,
-                    "position": (cx, cy),
-                    "confidence": conf
-                }
-                current_detections.append(det)
+                # Run YOLO inference
+                results = self.model(frame, verbose=False)[0]  # verbose=False keeps terminal clean
 
-                # Draw bounding boxes on video
-                cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                cv2.putText(frame, f"{label} {conf:.2f}", (int(x1), int(y1) - 5),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                current_detections = []
 
-            detections_output = current_detections
+                for box in results.boxes:
+                    x1, y1, x2, y2 = box.xyxy[0].tolist()
+                    conf = float(box.conf[0])
+                    cls = int(box.cls[0])
 
-            # Show real-time preview
-            cv2.imshow("Checkpoint Detection", frame)
+                    # Label from your YOLO class names
+                    label = self.model.names[cls]
 
-            # Quit with 'q'
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+                    # Compute center of bounding box (x, y)
+                    cx = int((x1 + x2) / 2)
+                    cy = int((y1 + y2) / 2)
 
-        cv2.destroyAllWindows()
-        Vilib.camera_close()
+                    det = {
+                        "label": label,
+                        "position": (cx, cy),
+                        "confidence": conf
+                    }
+                    current_detections.append(det)
 
-        print("[Detector] Stopping camera.")
+                    # --- VISUALIZATION (Optional) ---
+                    # Note: These drawings modify 'frame', but Vilib web stream
+                    # usually shows the raw feed. To see these boxes, you would
+                    # need to send this specific frame to the web buffer.
+                    # For now, we keep the calculation but skip the display.
+
+                    # Print detection to terminal so you know it's working
+                    print(f" [!] DETECTED: {label} ({conf:.2f}) at pos: {cx},{cy}")
+
+                detections_output = current_detections
+
+                # --- GUI DISPLAY (DISABLED TO FIX CRASH) ---
+                # cv2.imshow("Checkpoint Detection", frame)
+                # if cv2.waitKey(1) & 0xFF == ord('q'):
+                #    break
+
+        except KeyboardInterrupt:
+            print("\nUser stopped execution (Ctrl+C).")
+
+        finally:
+            # This block runs whether the code crashes or finishes
+            # cv2.destroyAllWindows() # Not needed since we didn't open windows
+            Vilib.camera_close()
+            print("[Detector] Camera closed.")
+
         return detections_output
