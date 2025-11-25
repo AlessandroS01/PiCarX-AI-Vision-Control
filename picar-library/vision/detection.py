@@ -69,7 +69,7 @@ class CheckpointDetector:
                     continue
 
                 # Run YOLO inference
-                results = self.model(frame, verbose=False)[0]  # verbose=False keeps terminal clean
+                results = self.model(frame, verbose=False)[0]
 
                 current_detections = []
 
@@ -97,30 +97,20 @@ class CheckpointDetector:
                     }
                     current_detections.append(det)
 
-                    # --- VISUALIZATION (Optional) ---
-                    # Note: These drawings modify 'frame', but Vilib web stream
-                    # usually shows the raw feed. To see these boxes, you would
-                    # need to send this specific frame to the web buffer.
-                    # For now, we keep the calculation but skip the display.
-
                     # Print detection to terminal so you know it's working
                     print(f" [!] DETECTED: {label} ({conf:.2f}) at pos: {cx},{cy}")
 
+                # --- THE FIX ---
+                # Update the Vilib web buffer with the frame YOU just drew on.
                 Vilib.img = frame
+                # ---------------
 
                 detections_output = current_detections
-
-                # --- GUI DISPLAY (DISABLED TO FIX CRASH) ---
-                # cv2.imshow("Checkpoint Detection", frame)
-                # if cv2.waitKey(1) & 0xFF == ord('q'):
-                #    break
 
         except KeyboardInterrupt:
             print("\nUser stopped execution (Ctrl+C).")
 
         finally:
-            # This block runs whether the code crashes or finishes
-            # cv2.destroyAllWindows() # Not needed since we didn't open windows
             Vilib.camera_close()
             print("[Detector] Camera closed.")
 
