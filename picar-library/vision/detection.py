@@ -81,6 +81,11 @@ class CheckpointDetector:
                     # Label from your YOLO class names
                     label = self.model.names[cls]
 
+                    # Draw bounding boxes on the 'frame' variable
+                    cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+                    cv2.putText(frame, f"{label} {conf:.2f}", (int(x1), int(y1) - 5),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
                     # Compute center of bounding box (x, y)
                     cx = int((x1 + x2) / 2)
                     cy = int((y1 + y2) / 2)
@@ -100,6 +105,8 @@ class CheckpointDetector:
 
                     # Print detection to terminal so you know it's working
                     print(f" [!] DETECTED: {label} ({conf:.2f}) at pos: {cx},{cy}")
+
+                Vilib.img = frame
 
                 detections_output = current_detections
 
