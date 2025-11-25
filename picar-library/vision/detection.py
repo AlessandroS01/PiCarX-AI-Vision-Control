@@ -46,7 +46,7 @@ class CheckpointDetector:
         [ {'label': 'A', 'position': (x, y), 'confidence': 0.9}, ... ]
         """
 
-        Vilib.camera_start(vflip=False, hflip=False)
+        Vilib.camera_start(vflip=True, hflip=False)
         Vilib.display(local=false, web=True)
 
         detections_output = []  # final return list
