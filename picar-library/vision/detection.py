@@ -58,7 +58,7 @@ class CheckpointDetector:
             print("Detection loop started. Press Ctrl+C to stop.")
             while True:
                 # Capture frame
-                frame = Vilib.picam2.capture_array()
+                frame = Vilib.img
 
                 if frame is None:
                     continue
@@ -96,8 +96,6 @@ class CheckpointDetector:
                     print(f" [!] DETECTED: {label} ({conf:.2f}) at pos: {cx},{cy}")
 
                 # Update the Vilib web buffer with the frame just drew on.
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                Vilib.img = frame_rgb
 
                 detections_output = current_detections
 
