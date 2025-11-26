@@ -46,6 +46,8 @@ class CheckpointDetector:
         [ {'label': 'A', 'position': (x, y), 'confidence': 0.9}, ... ]
         """
 
+        i = 0
+
         print("Starting Camera... Please wait.")
         Vilib.camera_start(vflip=True, hflip=False)
 
@@ -98,7 +100,7 @@ class CheckpointDetector:
                 # Update the Vilib web buffer with the frame just drew on.
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 Vilib.img = frame_rgb
-                cv2.imwrite("debug_detection.jpg", frame)
+                cv2.imwrite(f"bounding_boxes_frames/debug_detection{i}.jpg", frame)
 
                 detections_output = current_detections
 
