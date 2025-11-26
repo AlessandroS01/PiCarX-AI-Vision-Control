@@ -95,10 +95,9 @@ class CheckpointDetector:
                     # Print detection to terminal so you know it's working
                     print(f" [!] DETECTED: {label} ({conf:.2f}) at pos: {cx},{cy}")
 
-                # --- THE FIX ---
-                # Update the Vilib web buffer with the frame YOU just drew on.
-                Vilib.img = frame
-                # ---------------
+                # Update the Vilib web buffer with the frame just drew on.
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                Vilib.img = frame_rgb
 
                 detections_output = current_detections
 
