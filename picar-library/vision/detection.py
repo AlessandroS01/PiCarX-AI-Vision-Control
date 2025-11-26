@@ -100,7 +100,7 @@ class CheckpointDetector:
                 # Update the Vilib web buffer with the frame just drew on.
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 Vilib.img = frame_rgb
-                cv2.imwrite(f"bounding_boxes_frames/debug_detection{i}.jpg", frame)
+                cv2.imwrite(f"bounding_boxes_frames/debug_detection{i + 1}.jpg", frame)
 
                 detections_output = current_detections
 
