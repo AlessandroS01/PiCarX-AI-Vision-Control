@@ -6,17 +6,20 @@ from sympy import false
 from ultralytics import YOLO
 from vilib import Vilib
 
+from status.prediction import Prediction
+
 
 class CheckpointDetector:
     """Detects visual checkpoints or letters on track."""
 
     def __init__(self, model=None):
+        """ Initialize the CheckpointDetector with the trained YOLO model. """
         base_dir = os.path.dirname(os.path.dirname(__file__))  # goes up from 'vision/' to project root
         model_path = os.path.join(base_dir, "models", "best_yolo_model.pt")
 
         self.model = YOLO(model_path) if model is None else model
 
-    def detect_checkpoint_frame(self, frame):
+    def detect_checkpoint_frame(self, frame) -> list[Prediction]:
         """
         Run YOLO inference on a single frame (numpy image)
 
@@ -26,21 +29,25 @@ class CheckpointDetector:
         Returns:
             detections: List of detected objects with bounding boxes, confidence, and class IDs.
         """
-        results = self.model(frame)[0]
+        results = self.model(frame, verbose=False)[0]
 
         detections = []
         for box in results.boxes:
             x1, y1, x2, y2 = box.xyxy[0].tolist()
             conf = float(box.conf[0])
             cls = int(box.cls[0])
-            detections.append({
-                "bbox": (x1, y1, x2, y2),
-                "confidence": conf,
-                "class_id": cls
-            })
+            label = self.model.names[cls]
+
+            predicted_checkpoint = Prediction(
+                bounding_box=(x1, y1, x2, y2),
+                confidence=conf,
+                class_label=label
+            )
+
+            detections.append(predicted_checkpoint)
         return detections
 
-    def detect_checkpoint_video(self):
+    def detect_save_checkpoints_video(self):
         """
         Returns a list of detected checkpoints:
         [ {'label': 'A', 'position': (x, y), 'confidence': 0.9}, ... ]
@@ -50,8 +57,6 @@ class CheckpointDetector:
 
         print("Starting Camera... Please wait.")
         Vilib.camera_start(vflip=True, hflip=False)
-
-        # CRITICAL FIX: set local=False to prevent "qt.qpa.xcb" crash
         Vilib.display(local=False, web=True)
 
         detections_output = []

@@ -44,7 +44,7 @@ def training():
 
 if __name__=="__main__":
     detector = CheckpointDetector()
-    detector.detect_checkpoint_video()
+    detector.detect_save_checkpoints_video()
 
     # Testing code:
     #user_input = int(input("1. Check movement\n2. Train model\n"))

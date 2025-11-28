@@ -1,5 +1,8 @@
+from vilib import Vilib
+
 from controller.camera_controller import CameraController
 from controller.navigation_controller import NavigationController
+from vision.vision_system import VisionSystem
 
 
 class WorkflowController:
@@ -7,9 +10,31 @@ class WorkflowController:
     def __init__(self):
         self.camera_controller = CameraController()
         self.navigation_controller = NavigationController()
+        self.vision_model = VisionSystem()
 
     def start_workflow(self):
-        """Start the workflow by getting prediction from CameraController and passing it to NavigationController."""
-        prediction = self.camera_controller.make_prediction()
+        """
+            Controls the whole workflow by getting prediction from CameraController and passing it to
+            NavigationController.
+        """
 
-        self.navigation_controller.perform_action(prediction)
+        self.camera_controller.start_camera()
+
+        try:
+            print("Detection loop started. Press Ctrl+C to stop.")
+            while True:
+                # Capture frame
+                frame = self.camera_controller.get_camera_image()
+
+                if frame is None:
+                    continue
+
+                # Make prediction from captured frame
+                predicted_checkpoints = self.camera_controller.make_prediction(frame)
+
+        except KeyboardInterrupt:
+            print("\nUser stopped execution (Ctrl+C).")
+
+        finally:
+            Vilib.camera_close()
+            print("[Detector] Camera closed.")

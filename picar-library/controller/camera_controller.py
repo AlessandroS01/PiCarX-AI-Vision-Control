@@ -5,8 +5,12 @@ from vision.vision_system import VisionSystem
 class CameraController:
     """Controller for managing camera in PiCarX-AI-vision-Control."""
     def __init__(self):
-        self.vision = VisionSystem()
         self.camera = Camera()
+        self.vision = VisionSystem()
+
+    def start_camera(self):
+        """Start the camera."""
+        self.camera.start_camera()
 
     def get_camera_image(self):
         """
@@ -17,13 +21,15 @@ class CameraController:
         """
         return self.camera.get_frame()
 
-    def make_prediction(self) -> Prediction:
+    def make_prediction(self, frame) -> list[Prediction]:
         """
-        Takes a camera image and passes it to the vision system as input to the model.
+            Passes a frame to the vision system as input to the model.
+
+        Args:
+            frame: The raw image frame from the camera.
 
         Returns:
             prediction: Prediction object containing frame and detected checkpoints.
         """
-        frame = self.get_camera_image()
 
         return self.vision.make_prediction(frame)
