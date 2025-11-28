@@ -48,6 +48,8 @@ class Navigation:
         """
         x1, y1, x2, y2 = bounding_box
 
+        # TODO implement safe stopping here
+
         if x1 < 640 / 2 and x2 < 640 / 2:
             action = Action.LEFT
         elif x1 > 640 / 2 and x2 > 640 / 2:
