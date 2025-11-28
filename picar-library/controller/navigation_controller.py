@@ -8,10 +8,9 @@ class NavigationController:
     def __init__(self):
         self.navigation = Navigation()
 
-    def perform_action(self, prediction: Prediction):
+    def perform_action(self, predictions: list[Prediction]):
         """ Takes a prediction and passes it to the navigation system to perform the correspondent action
         Args:
-            prediction: Prediction object containing frame and detected checkpoints.
+            predictions: List of prediction checkpoints containing bounding box, confidence and label.
         """
-        action = self.navigation.decide_action(prediction)
-        self.navigation.perform_action(action, prediction)
+        self.navigation.perform_action(predictions)

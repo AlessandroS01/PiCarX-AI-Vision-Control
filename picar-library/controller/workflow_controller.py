@@ -32,6 +32,8 @@ class WorkflowController:
                 # Make prediction from captured frame
                 predicted_checkpoints = self.camera_controller.make_prediction(frame)
 
+                self.navigation_controller.perform_action(predicted_checkpoints)
+
         except KeyboardInterrupt:
             print("\nUser stopped execution (Ctrl+C).")
 
