@@ -1,3 +1,5 @@
+import time
+
 from picarx import Picarx
 
 from status.action import Action
@@ -19,6 +21,7 @@ class Movement:
         """Moves the car forward"""
         print("Moving forward")
         self.picar.forward(self.distance)
+        time.sleep(distance/10)
         self.picar.set_dir_servo_angle(0)
 
     def backward(self, distance=80):
