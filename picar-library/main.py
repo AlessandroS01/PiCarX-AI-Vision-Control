@@ -1,3 +1,4 @@
+from controller.workflow_controller import WorkflowController
 from models.yolo import YOLOModel
 
 from vision.detection import CheckpointDetector
@@ -40,8 +41,10 @@ def training():
 
 
 if __name__=="__main__":
-    detector = CheckpointDetector()
-    detector.detect_save_checkpoints_video()
+    start = WorkflowController()
+    start.start_workflow()
+    #detector = CheckpointDetector()
+    #detector.detect_save_checkpoints_video()
 
     # Testing code:
     #user_input = int(input("1. Check movement\n2. Train model\n"))
