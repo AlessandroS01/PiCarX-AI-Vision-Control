@@ -37,10 +37,10 @@ class Movement:
             distance (int): Distance to move forward after turning
         """
         print(f"Turning {direction} by {angle} degrees")
+        self.picar.set_dir_servo_angle(0)
         if direction == Action.LEFT:
             self.picar.set_dir_servo_angle(-angle)
             self.picar.forward(self.distance)
         elif direction == Action.RIGHT:
             self.picar.set_dir_servo_angle(angle)
             self.picar.forward(self.distance)
-        self.picar.set_dir_servo_angle(0)
