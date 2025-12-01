@@ -26,11 +26,18 @@ class Movement:
         self.picar.backward(distance)
 
     def turn(self, direction, angle, distance=80):
-        """Turns the car in the specified direction by the given angle"""
+        """
+            Turns the car in the specified direction by the given angle
+
+        Args:
+            direction (Action): Direction to turn ('LEFT' or 'RIGHT')
+            angle (int): Angle in degrees to turn
+            distance (int): Distance to move forward after turning
+        """
         print(f"Turning {direction} by {angle} degrees")
         if direction == Action.LEFT:
-            self.picar.set_dir_servo_angle(-35)
+            self.picar.set_dir_servo_angle(-angle)
             self.picar.forward(distance)
         elif direction == Action.RIGHT:
-            self.picar.set_dir_servo_angle(35)
+            self.picar.set_dir_servo_angle(angle)
             self.picar.forward(distance)
