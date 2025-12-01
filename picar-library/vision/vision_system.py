@@ -1,5 +1,5 @@
-from detection import CheckpointDetector
 from status.prediction import Prediction
+from vision.detection import CheckpointDetector
 
 
 class VisionSystem:
