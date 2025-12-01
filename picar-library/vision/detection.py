@@ -27,7 +27,7 @@ class CheckpointDetector:
             frame: The raw image frame from the camera.
 
         Returns:
-            detections: List of detected objects with bounding boxes, confidence, and class IDs.
+            detections: List of detected objects with bounding boxes, confidence, and class label.
         """
         results = self.model(frame, verbose=False)[0]
 
@@ -49,6 +49,8 @@ class CheckpointDetector:
 
     def detect_save_checkpoints_video(self):
         """
+        DEPRECATED. Use only while debugging the model.
+
         Returns a list of detected checkpoints:
         [ {'label': 'A', 'position': (x, y), 'confidence': 0.9}, ... ]
         """

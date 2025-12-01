@@ -20,6 +20,10 @@ class Navigation:
         """
 
         # TODO implement how to decide which detected object to take into consideration
+
+        # TODO implement safe stopping logic
+
+        # TODO implement random search when no desired checkpoint is detected
         bbox = predictions[0].bounding_box
         action = self.decide_action(bbox)
 

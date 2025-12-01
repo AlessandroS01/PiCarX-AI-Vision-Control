@@ -29,7 +29,7 @@ class CameraController:
             frame: The raw image frame from the camera.
 
         Returns:
-            prediction: Prediction object containing frame and detected checkpoints.
+            prediction: List of Prediction objects each containing checkpoint class, confidence and position.
         """
 
         return self.vision.make_prediction(frame)
