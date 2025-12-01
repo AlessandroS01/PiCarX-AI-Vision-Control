@@ -4,15 +4,14 @@ Example usage of the RoboEye library
 
 # import time
 
+import numpy as np
 from picarx import Picarx
+from pygame import mixer
+from pygame import time
+from robot_hat import Music, enable_speaker, disable_speaker
+
 from camera import Camera
 from display import Display
-from pygame import time
-from pygame import mixer
-from robot_hat import PWM, Music, Buzzer, set_volume, enable_speaker, disable_speaker
-import os
-import numpy as np
-
 
 STEERING_MIN = -35
 STEERING_MAX = 35

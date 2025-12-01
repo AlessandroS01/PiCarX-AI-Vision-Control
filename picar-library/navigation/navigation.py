@@ -1,5 +1,3 @@
-from typing import Any
-
 from hardware.movement import Movement
 from status.action import Action
 from status.prediction import Prediction

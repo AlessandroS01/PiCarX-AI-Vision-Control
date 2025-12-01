@@ -1,5 +1,4 @@
 from navigation.navigation import Navigation
-from status.action import Action
 from status.prediction import Prediction
 
 

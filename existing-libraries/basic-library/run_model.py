@@ -16,17 +16,16 @@ updates the display with bounding boxes and object info.
 
 # --- Imports ----------------------------------------------------------------
 
-from picarx import Picarx                # Controls the physical robot (motors, servos)
-from camera import Camera                # Handles video capture and frame management
-from display import Display              # Provides both local and web-based video display
-from pygame import time                  # Used for frame rate timing
-from pygame import mixer                 # For potential sound effects (not used here)
-from robot_hat import PWM, Music, Buzzer, set_volume, enable_speaker, disable_speaker
-                                         # Hardware control and audio (speaker, PWM, etc.)
-import os
-import numpy as np
-import cv2                               # For image resizing and frame encoding
-from ultralytics import YOLO             # YOLOv8 object detection model
+# Hardware control and audio (speaker, PWM, etc.)
+import cv2  # For image resizing and frame encoding
+from picarx import Picarx  # Controls the physical robot (motors, servos)
+from pygame import mixer  # For potential sound effects (not used here)
+from pygame import time  # Used for frame rate timing
+from robot_hat import disable_speaker
+from ultralytics import YOLO  # YOLOv8 object detection model
+
+from camera import Camera  # Handles video capture and frame management
+from display import Display  # Provides both local and web-based video display
 
 # --- Constants ---------------------------------------------------------------
 

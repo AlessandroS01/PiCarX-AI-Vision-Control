@@ -1,12 +1,10 @@
-from picarx import Picarx
+import cv2
+import numpy as np
 from camera import Camera
 from display import Display
-from pygame import time
+from picarx import Picarx
 from pygame import mixer
-from robot_hat import PWM, Music, Buzzer, set_volume, enable_speaker, disable_speaker
-import os
-import numpy as np
-import cv2
+from pygame import time
 from ultralytics import YOLO
 
 """Definition image size and region of interest"""

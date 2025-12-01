@@ -3,9 +3,11 @@ Display functionality for RoboEye library
 """
 
 import os
-import cv2
 import threading
 import time
+
+import cv2
+
 from streaming import create_streaming_server, start_streaming_server
 from utils import get_ip_addresses
 

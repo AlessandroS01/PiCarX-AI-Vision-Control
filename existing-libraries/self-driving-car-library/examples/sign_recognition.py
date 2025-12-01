@@ -1,11 +1,10 @@
 import torch
-from torchvision import transforms
 from PIL import Image
+from camera import Camera
 from picarx import Picarx
 from pygame import time
-
 from self_driving_car.models.sign import SignClassifier
-from camera import Camera
+from torchvision import transforms
 
 sign_model = SignClassifier()
 sign_model.load_state_dict(torch.load("../sign_classifier.pth"))

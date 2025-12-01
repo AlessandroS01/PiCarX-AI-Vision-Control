@@ -1,8 +1,6 @@
-import cv2
-import numpy as np
 import os
 
-from sympy import false
+import cv2
 from ultralytics import YOLO
 from vilib import Vilib
 

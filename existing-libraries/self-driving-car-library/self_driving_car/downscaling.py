@@ -1,5 +1,6 @@
-from PIL import Image
 import os
+
+from PIL import Image
 
 dir = "self_driving_car/stop_sign/parking_sign_raw"
 num_im = 1

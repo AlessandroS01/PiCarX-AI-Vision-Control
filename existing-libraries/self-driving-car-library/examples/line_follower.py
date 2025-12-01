@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 from camera import Camera
+from display import Display
 from picarx import Picarx
 from pygame import time
-from display import Display
 
 WIDTH = 640
 HEIGHT = 480

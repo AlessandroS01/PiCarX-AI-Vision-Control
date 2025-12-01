@@ -1,6 +1,3 @@
-import os
-from time import strftime, localtime, time
-
 from vilib import Vilib
 
 

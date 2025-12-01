@@ -1,6 +1,7 @@
-import os
-import cv2
 import csv
+import os
+
+import cv2
 
 STOP_DIR = "stop"
 NOT_STOP_DIR = "not_stop"

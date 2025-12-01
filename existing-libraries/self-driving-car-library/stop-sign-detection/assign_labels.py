@@ -1,6 +1,7 @@
-import os
-import cv2
 import csv
+import os
+
+import cv2
 
 # === CONFIG ===
 STOP_DIR = "stop"

@@ -2,12 +2,11 @@
 Core camera functionality for the RoboEye library
 """
 
-import os
-import time
 import threading
+import time
+
 import cv2
 import numpy as np
-
 from ultralytics import YOLO
 
 

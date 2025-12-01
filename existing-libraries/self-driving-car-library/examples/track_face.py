@@ -1,9 +1,11 @@
 # scripts/track_face.py
 
-from picarx import Picarx
 from time import sleep
+
+from picarx import Picarx
 from pygame import time
 from roboeye.main import RoboEye
+
 
 def clamp(value, min_val, max_val):
     return max(min(value, max_val), min_val)

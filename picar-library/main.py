@@ -1,8 +1,5 @@
-from hardware.movement import Movement
-import time
 from models.yolo import YOLOModel
 
-from status.action import Action
 from vision.detection import CheckpointDetector
 
 """def movement_test():

@@ -1,11 +1,10 @@
 import cv2
 import numpy as np
 from camera import Camera
+from display import Display
+from object_detection import ObjectDetection
 from picarx import Picarx
 from pygame import time
-from display import Display
-from ultralytics import YOLO
-from object_detection import ObjectDetection
 
 WIDTH = 640
 HEIGHT = 480

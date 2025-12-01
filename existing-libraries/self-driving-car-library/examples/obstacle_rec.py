@@ -1,11 +1,10 @@
 import torch
-from torchvision import transforms
 from PIL import Image
+from camera import Camera
 from picarx import Picarx
 from pygame import time
-
 from self_driving_car.models.forward import ForwardClassifier
-from camera import Camera
+from torchvision import transforms
 
 model = ForwardClassifier()
 model.load_state_dict(torch.load("../forward_classifier.pth"))

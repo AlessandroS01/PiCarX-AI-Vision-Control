@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 import torch.optim as optim
-from torchvision import transforms
 from torch.utils.data import DataLoader
+from torchvision import transforms
 from torchvision.datasets import ImageFolder
+
 
 class ForwardClassifier(nn.Module):
     def __init__(self):

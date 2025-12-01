@@ -2,9 +2,10 @@
 Flask streaming server for RoboEye library
 """
 
-import cv2
-import time
 import logging
+import time
+
+import cv2
 from flask import Flask, Response, render_template
 
 # Suppress Flask debug messages
