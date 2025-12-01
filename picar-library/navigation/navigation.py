@@ -35,7 +35,7 @@ class Navigation:
         elif action == Action.RIGHT:
             angle = self.angle_retrieval(bbox)
             self.turn(Action.RIGHT, angle)
-        self.stop()
+        #self.stop()
 
 
     def decide_action(self, bounding_box) -> Action:
