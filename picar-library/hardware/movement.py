@@ -42,3 +42,4 @@ class Movement:
         elif direction == Action.RIGHT:
             self.picar.set_dir_servo_angle(angle)
             self.picar.forward(distance)
+        self.picar.set_dir_servo_angle(0)
