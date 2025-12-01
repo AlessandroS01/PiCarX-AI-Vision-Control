@@ -20,8 +20,8 @@ class YOLOModel:
         self.model8 = YOLO(model_path)
         self.model8_augmented = YOLO(model_path)
         self.model12 = YOLO(model_path12)
-        self.data_path_normal = 'picar-library/models/datasets/yolo_dataset/data.yaml'
-        self.data_path_augmented = 'picar-library/models/datasets/augmented_noised_yolo_dataset/data.yaml'
+        self.data_path_normal = 'models/datasets/yolo_dataset/data.yaml'
+        self.data_path_augmented = 'models/datasets/augmented_noised_yolo_dataset/data.yaml'
         self.epochs = epochs
         self.batch_size = batch_size
 
@@ -52,6 +52,20 @@ class YOLOModel:
             name='yolov8n-augmented-picar'
         )
         print("--- Augmented YOLOv8 Training Complete ---")
+
+    def run_training_augmented_yolo12n_dataset(self):
+        """
+          Train self.model12 using the augmented yolo dataset
+        """
+        print("\n--- Starting augmented YOLOv12n Training ---")
+        self.model12.train(
+            data=self.data_path_augmented,
+            epochs=self.epochs,
+            imgsz=640,
+            batch=self.batch_size,
+            name='yolov12n-augmented-picar'
+        )
+        print("--- Augmented YOLOv12n Training Complete ---")
 
     """def run_training(self):
         Trains both models. The model objects in memory

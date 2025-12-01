@@ -5,4 +5,5 @@ runs
 /picar-library/models/datasets/yolo_dataset/valid/labels.cache
 /picar-library/models/datasets/augmented_noised_yolo_dataset/train/labels.cache
 /picar-library/models/datasets/augmented_noised_yolo_dataset/valid/labels.cache
-/picar-library/main_debug.py
+/picar-library/model_debug.py
+/picar-library/training.py

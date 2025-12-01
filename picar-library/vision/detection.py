@@ -13,7 +13,7 @@ class CheckpointDetector:
     def __init__(self, model=None):
         """ Initialize the CheckpointDetector with the trained YOLO model. """
         base_dir = os.path.dirname(os.path.dirname(__file__))  # goes up from 'vision/' to project root
-        model_path = os.path.join(base_dir, "models", "best_yolo_model.pt")
+        model_path = os.path.join(base_dir, "models", "best_v8n.pt")
 
         self.model = YOLO(model_path) if model is None else model
 
@@ -33,6 +33,10 @@ class CheckpointDetector:
         for box in results.boxes:
             x1, y1, x2, y2 = box.xyxy[0].tolist()
             conf = float(box.conf[0])
+
+            if conf <= 0.6:
+                continue  # Skip low-confidence detections
+
             cls = int(box.cls[0])
             label = self.model.names[cls]
 
