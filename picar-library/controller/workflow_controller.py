@@ -32,7 +32,9 @@ class WorkflowController:
                 # Make prediction from captured frame
                 predicted_checkpoints = self.camera_controller.make_prediction(frame)
 
-                print("Predicted checkpoints: ", predicted_checkpoints)
+                for prediction in predicted_checkpoints:
+                    print(f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f} at {prediction.bounding_box}")
+
 
                 if len(predicted_checkpoints) == 0:
                     continue
