@@ -34,6 +34,9 @@ class WorkflowController:
 
                 print("Predicted checkpoints: ", predicted_checkpoints)
 
+                if len(predicted_checkpoints) == 0:
+                    continue
+
                 self.navigation_controller.perform_action(predicted_checkpoints)
 
         except KeyboardInterrupt:
