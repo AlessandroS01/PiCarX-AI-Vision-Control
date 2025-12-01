@@ -7,6 +7,7 @@ class Movement:
     """Low level class responsible for the movement of the car."""
     def __init__(self):
         self.picar = Picarx()
+        self.distance = 20
 
     def stop(self):
         """Stops the car"""
@@ -14,11 +15,11 @@ class Movement:
         self.picar.stop()
 
 
-    def forward(self, distance=80):
+    def forward(self, distance=20):
         """Moves the car forward"""
         print("Moving forward")
         self.picar.set_dir_servo_angle(0)
-        self.picar.forward(distance)
+        self.picar.forward(self.distance)
 
     def backward(self, distance=80):
         """Moves the car backward"""
@@ -26,7 +27,7 @@ class Movement:
         self.picar.set_dir_servo_angle(0)
         self.picar.backward(distance)
 
-    def turn(self, direction, angle, distance=80):
+    def turn(self, direction, angle, distance=20):
         """
             Turns the car in the specified direction by the given angle
 
@@ -38,8 +39,8 @@ class Movement:
         print(f"Turning {direction} by {angle} degrees")
         if direction == Action.LEFT:
             self.picar.set_dir_servo_angle(-angle)
-            self.picar.forward(distance)
+            self.picar.forward(self.distance)
         elif direction == Action.RIGHT:
             self.picar.set_dir_servo_angle(angle)
-            self.picar.forward(distance)
+            self.picar.forward(self.distance)
         self.picar.set_dir_servo_angle(0)
