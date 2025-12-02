@@ -9,33 +9,39 @@ class Navigation:
     def __init__(self):
         self.movement = Movement()
 
-    def perform_action(self, predictions: list[Prediction]):
+    def perform_action(self, predictions: list[Prediction], selected_checkpoint: str):
         """
             Performs action according to the predicted list of checkpoints
 
         Args:
             predictions: Prediction object containing frame and detected checkpoints
+            selected_checkpoint: The checkpoint the user has selected to find.
         """
 
-        # TODO implement how to decide which detected object to take into consideration
+        matching_checkpoint = [p for p in predictions if p.class_label == selected_checkpoint]
 
-        # TODO implement safe stopping logic
+        if matching_checkpoint:
+            # found checkpoint
+            target_checkpoint = matching_checkpoint[0]
+            bbox = target_checkpoint.bounding_box
+            action = self.decide_action(bbox)
 
-        # TODO implement random search when no desired checkpoint is detected
-        bbox = predictions[0].bounding_box
-        action = self.decide_action(bbox)
-
-        if action == Action.FORWARD:
-            self.forward()
-        elif action == Action.BACKWARD:
-            self.backward()
-        elif action == Action.LEFT:
-            angle = self.angle_retrieval(bbox)
-            self.turn(Action.LEFT, angle)
-        elif action == Action.RIGHT:
-            angle = self.angle_retrieval(bbox)
-            self.turn(Action.RIGHT, angle)
-        #self.stop()
+            if action == Action.FORWARD:
+                self.forward()
+            elif action == Action.BACKWARD:
+                self.backward()
+            elif action == Action.LEFT:
+                angle = self.angle_retrieval(bbox)
+                self.turn(Action.LEFT, angle)
+            elif action == Action.RIGHT:
+                angle = self.angle_retrieval(bbox)
+                self.turn(Action.RIGHT, angle)
+            elif action == Action.STOP:
+                self.stop()
+        else :
+            # not found checkpoint -> random search
+            self.stop()
+            # TODO implement random search when no desired checkpoint is detected
 
 
     def decide_action(self, bounding_box) -> Action:
@@ -50,7 +56,12 @@ class Navigation:
         """
         x1, y1, x2, y2 = bounding_box
 
-        # TODO implement safe stopping here
+        percentage_check_height = (y2 - y1)/480
+        percentage_check_width = (x2 - x1)/640
+
+        # safe stopping condition
+        if percentage_check_height >= 0.65 or percentage_check_width >= 0.65:
+            return Action.STOP
 
         if x1 < 640 / 2 and x2 < 640 / 2:
             action = Action.LEFT
@@ -58,7 +69,6 @@ class Navigation:
             action = Action.RIGHT
         else:
             action = Action.FORWARD
-
 
         return action
 
