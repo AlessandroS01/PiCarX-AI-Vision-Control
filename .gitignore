@@ -7,3 +7,4 @@ runs
 /picar-library/models/datasets/augmented_noised_yolo_dataset/valid/labels.cache
 /picar-library/model_debug.py
 /picar-library/training.py
+/picar-library/selection.py
