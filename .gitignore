@@ -8,3 +8,4 @@ runs
 /picar-library/model_debug.py
 /picar-library/training.py
 /picar-library/selection.py
+/picar-library/graph.py
