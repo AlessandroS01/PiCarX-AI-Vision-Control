@@ -19,3 +19,7 @@ class VisionSystem:
             List of prediction objects containing bounding box, confidence and class id.
         """
         return self.checkpoint_detector.detect_checkpoint_frame(frame)
+
+    def detect_tape(self):
+        pass
+        # TODO  Implement tape detection method
