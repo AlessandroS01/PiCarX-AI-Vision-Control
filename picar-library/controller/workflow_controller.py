@@ -38,13 +38,15 @@ class WorkflowController:
                     predicted_checkpoints = self.camera_controller.make_prediction(frame)
 
                     for prediction in predicted_checkpoints:
-                        print(f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f} at {prediction.bounding_box}")
+                        print(f""
+                              f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f}"
+                              f" at {prediction.bounding_box}")
 
 
-                    if len(predicted_checkpoints) == 0:
-                        continue
+                    #if len(predicted_checkpoints) == 0:
+                    #    continue
 
-                    self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
+                    #self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
 
             except KeyboardInterrupt:
                 print("\nUser stopped execution (Ctrl+C).")
