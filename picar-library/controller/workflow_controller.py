@@ -2,6 +2,7 @@ from vilib import Vilib
 
 from controller.camera_controller import CameraController
 from controller.navigation_controller import NavigationController
+from selection import selected_checkpoint
 from utils.checkpoint_selection import choose_element_visual
 from vision.vision_system import VisionSystem
 
@@ -21,7 +22,9 @@ class WorkflowController:
 
         self.camera_controller.start_camera()
 
-        selected_checkpoint = choose_element_visual()
+        # selected_checkpoint = choose_element_visual()
+
+        selected_checkpoint = "A"
 
         if selected_checkpoint == "A" or selected_checkpoint == "B" or selected_checkpoint == "C":
 
