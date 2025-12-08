@@ -13,9 +13,11 @@ class CheckpointDetector:
     def __init__(self, model=None):
         """ Initialize the CheckpointDetector with the trained YOLO model. """
         base_dir = os.path.dirname(os.path.dirname(__file__))  # goes up from 'vision/' to project root
-        model_path = os.path.join(base_dir, "models", "best_v8n.pt")
+        model_path_v8n = os.path.join(base_dir, "models", "best_v8n.pt")
+        model_path_v12n = os.path.join(base_dir, "models", "best_v12n.pt")
 
-        self.model = YOLO(model_path) if model is None else model
+        self.model_v8n = YOLO(model_path_v8n) if model is None else model
+        self.model_v12n = YOLO(model_path_v12n) if model is None else model
 
     def detect_checkpoint_frame(self, frame) -> list[Prediction]:
         """
@@ -27,7 +29,7 @@ class CheckpointDetector:
         Returns:
             detections: List of detected objects with bounding boxes, confidence, and class label.
         """
-        results = self.model(frame, verbose=False)[0]
+        results = self.model_v12n(frame, verbose=False)[0]
 
         detections = []
         for box in results.boxes:
@@ -38,7 +40,7 @@ class CheckpointDetector:
                 continue  # Skip low-confidence detections
 
             cls = int(box.cls[0])
-            label = self.model.names[cls]
+            label = self.model_v12n.names[cls]
 
             predicted_checkpoint = Prediction(
                 bounding_box=(x1, y1, x2, y2),
@@ -75,7 +77,7 @@ class CheckpointDetector:
                     continue
 
                 # Run YOLO inference
-                results = self.model(frame, verbose=False)[0]
+                results = self.model_v8n(frame, verbose=False)[0]
 
                 current_detections = []
 
@@ -85,7 +87,7 @@ class CheckpointDetector:
                     cls = int(box.cls[0])
 
                     # Label from your YOLO class names
-                    label = self.model.names[cls]
+                    label = self.model_v8n.names[cls]
 
                     # Draw bounding boxes on the 'frame' variable
                     cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
