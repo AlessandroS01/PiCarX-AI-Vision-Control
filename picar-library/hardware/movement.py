@@ -20,7 +20,7 @@ class Movement:
     def forward(self, distance=20):
         """Moves the car forward"""
         print("Moving forward")
-        time.sleep(0.1)
+        time.sleep(0.25)
         self.picar.forward(self.distance)
 
     def backward(self, distance=80):
