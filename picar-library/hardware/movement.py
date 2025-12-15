@@ -9,7 +9,7 @@ class Movement:
     """Low level class responsible for the movement of the car."""
     def __init__(self):
         self.picar = Picarx()
-        self.distance = 5
+        self.distance = 2
 
     def stop(self):
         """Stops the car"""
@@ -20,7 +20,7 @@ class Movement:
     def forward(self, distance=20):
         """Moves the car forward"""
         print("Moving forward")
-        time.sleep(0.25)
+        time.sleep(0.1)
         self.picar.forward(self.distance)
 
     def backward(self, distance=80):
@@ -38,6 +38,15 @@ class Movement:
             distance (int): Distance to move forward after turning
         """
         print(f"Turning {direction} by {angle} degrees")
-        self.picar.set_dir_servo_angle(angle)
+        self.set_servo_angle(angle)
         self.forward()
-        self.picar.set_dir_servo_angle(0)
+        self.set_servo_angle(0)
+
+    def set_servo_angle(self, angle):
+        """
+            Sets the steering servo to the specified angle.
+        Args:
+
+            angle(int): Angle in degrees to set the servo
+        """
+        self.picar.set_dir_servo_angle(angle)
