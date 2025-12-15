@@ -88,14 +88,14 @@ class Navigation:
         if x1 < 640 / 8:
             angle = -35
         elif x1 < 640 / 4:
-            angle = -20
+            angle = -35
         elif x1 < 640 / 2:
             angle = -10
         # RIGHT
         elif x1 > 640 / 8:
             angle = 35
         elif x1 > 640 / 4:
-            angle = 20
+            angle = 35
         else:
             angle = 10
 
