@@ -33,6 +33,7 @@ class Navigation:
             elif action == Action.LEFT:
                 angle = self.angle_retrieval(bbox)
                 self.turn(Action.LEFT, -35)
+                self.set_servo_angle(10)
             elif action == Action.RIGHT:
                 angle = self.angle_retrieval(bbox)
                 self.turn(Action.RIGHT, 35)
