@@ -9,7 +9,7 @@ class Movement:
     """Low level class responsible for the movement of the car."""
     def __init__(self):
         self.picar = Picarx()
-        self.distance = 1
+        self.distance = 2
 
     def stop(self):
         """Stops the car"""
@@ -20,7 +20,7 @@ class Movement:
     def forward(self, distance=20):
         """Moves the car forward"""
         print("Moving forward")
-        time.sleep(0.25)
+        time.sleep(0.1)
         self.picar.forward(self.distance)
 
     def backward(self, distance=80):
