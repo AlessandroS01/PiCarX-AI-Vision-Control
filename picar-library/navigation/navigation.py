@@ -36,7 +36,7 @@ class Navigation:
             elif action == Action.RIGHT:
                 angle = self.angle_retrieval(bbox)
                 self.turn(Action.RIGHT, 35)
-                self.turn(Action.LEFT, -35)
+                self.set_servo_angle(-35)
             elif action == Action.STOP:
                 self.stop()
         else :
@@ -125,3 +125,12 @@ class Navigation:
             angle (int): Angle in degrees to turn
         """
         self.movement.turn(direction, angle)
+
+    def set_servo_angle(self, angle):
+        """
+            Sets the steering servo to the specified angle
+
+        Args:
+            angle (int): Angle in degrees to set the servo
+        """
+        self.movement.set_servo_angle(angle)
