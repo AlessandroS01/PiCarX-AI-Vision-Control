@@ -45,10 +45,10 @@ class WorkflowController:
                               f" at {prediction.bounding_box}")
 
 
-                    #if len(predicted_checkpoints) == 0:
-                    #    continue
+                    if len(predicted_checkpoints) == 0:
+                        continue
 
-                    #self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
+                    self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
 
             except KeyboardInterrupt:
                 print("\nUser stopped execution (Ctrl+C).")
