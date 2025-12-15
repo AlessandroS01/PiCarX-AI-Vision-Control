@@ -36,6 +36,7 @@ class Navigation:
             elif action == Action.RIGHT:
                 angle = self.angle_retrieval(bbox)
                 self.turn(Action.RIGHT, 35)
+                self.turn(Action.LEFT, -35)
             elif action == Action.STOP:
                 self.stop()
         else :
@@ -58,6 +59,8 @@ class Navigation:
 
         percentage_check_height = (y2 - y1)/480
         percentage_check_width = (x2 - x1)/640
+
+        # TODO implement condition on going straight if the checkpoint is far away
 
         # safe stopping condition
         if percentage_check_height >= 0.65 or percentage_check_width >= 0.65:
