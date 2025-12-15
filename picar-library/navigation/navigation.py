@@ -35,7 +35,7 @@ class Navigation:
                 self.turn(Action.LEFT, -35)
             elif action == Action.RIGHT:
                 angle = self.angle_retrieval(bbox)
-                self.turn(Action.RIGHT, 35)
+                self.turn(Action.RIGHT, 25)
                 self.set_servo_angle(-20)
             elif action == Action.STOP:
                 self.stop()
