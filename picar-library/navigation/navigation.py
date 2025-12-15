@@ -63,7 +63,7 @@ class Navigation:
         # TODO implement condition on going straight if the checkpoint is far away
 
         # safe stopping condition
-        if percentage_check_height >= 0.1 or percentage_check_width >= 0.1:
+        if percentage_check_height >= 0.25 or percentage_check_width >= 0.25:
             return Action.STOP
 
         if x1 < 640 / 2 and x2 < 640 / 2:
