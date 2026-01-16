@@ -41,6 +41,19 @@ class Movement:
         self.set_servo_angle(angle)
         self.forward()
 
+    def calibrate_motors(self, motor_index, direction):
+        """Rotates the car
+
+        Args:
+            motor_index (int): Index of the motor to calibrate (1 left or 2 right)
+            direction (int): Direction to set for calibration (1 forward or -1 backward)
+        """
+
+        if motor_index in [1, 2] and direction in [1, -1]:
+            self.picar.motor_direction_calibrate(motor_index, direction)
+            self.forward()
+
+
     def set_servo_angle(self, angle):
         """
             Sets the steering servo to the specified angle.
@@ -49,7 +62,3 @@ class Movement:
             angle(int): Angle in degrees to set the servo
         """
         self.picar.set_dir_servo_angle(angle)
-
-    def rotate(self):
-        self.picar.motor_direction_calibrate(1, -1)
-        self.forward()

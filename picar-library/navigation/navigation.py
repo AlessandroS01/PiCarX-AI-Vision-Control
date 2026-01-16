@@ -18,6 +18,8 @@ class Navigation:
             selected_checkpoint: The checkpoint the user has selected to find.
         """
 
+        self.reset_motors()
+
         matching_checkpoint = [p for p in predictions if p.class_label == selected_checkpoint]
 
         if matching_checkpoint:
@@ -40,8 +42,7 @@ class Navigation:
                 self.stop()
         else :
             # not found checkpoint -> random search
-            self.stop()
-            # TODO implement random search when no desired checkpoint is detected
+            self.calibrate_motors(1, -1)
 
 
     def decide_action(self, bounding_box) -> Action:
@@ -104,6 +105,30 @@ class Navigation:
 
         return angle
 
+    def turning_on_history(self, last_prediction: list[Prediction], selected_checkpoint: str):
+        """ Takes the last prediction and rotates the car accordingly
+
+        Args:
+            last_prediction: The last captured prediction from the camera.
+            selected_checkpoint: The checkpoint the user has selected to find.
+        """
+
+        matching_checkpoint = [p for p in last_prediction if p.class_label == selected_checkpoint]
+
+        bbox = matching_checkpoint[0].bounding_box
+        action = self.decide_action(bbox)
+
+        if action == Action.LEFT:
+            self.calibrate_motors(1, -1)
+        elif action == Action.RIGHT:
+            self.calibrate_motors(2, -1)
+
+    def turning_randomly(self):
+        """ Rotates the car randomly to search for the checkpoint """
+        import random
+        motor_index = random.choice([1, 2])
+        self.calibrate_motors(motor_index, -1)
+
     def stop(self):
         """Stops the car"""
         self.movement.stop()
@@ -135,5 +160,18 @@ class Navigation:
         """
         self.movement.set_servo_angle(angle)
 
-    def rotate(self):
-        self.movement.rotate()
+    def calibrate_motors(self, motor_index, direction):
+        """
+            Calibrates the motors for better movement
+
+            Args:
+                motor_index (int): Index of the motor to calibrate (1 left or 2 right)
+                direction (int): Direction to set for calibration (1 forward or -1 backward)
+        """
+
+        self.movement.calibrate_motors(motor_index, direction)
+
+    def reset_motors(self):
+        """Resets the motors to default forward direction"""
+        self.movement.calibrate_motors(1, 1)
+        self.movement.calibrate_motors(2, 1)

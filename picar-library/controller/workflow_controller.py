@@ -21,6 +21,7 @@ class WorkflowController:
         self.camera_controller.start_camera()
 
         selected_checkpoint = ""
+        last_prediction = None # track history of last prediction
 
         while selected_checkpoint not in ["A", "B", "C"]:
             selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
@@ -46,12 +47,12 @@ class WorkflowController:
                                   f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f}"
                                   f" at {prediction.bounding_box}")
 
+                        if selected_checkpoint in [p.class_label for p in predicted_checkpoints]:
+                            self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
+                        else:
+                            self.navigation_controller.perform_on_history(last_prediction, selected_checkpoint)
 
-                        if len(predicted_checkpoints) == 0:
-                            continue
-
-                        self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
-
+                        last_prediction = predicted_checkpoints
                 except KeyboardInterrupt:
                     print("\nUser stopped execution (Ctrl+C).")
 
