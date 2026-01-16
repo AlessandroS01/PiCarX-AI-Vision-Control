@@ -32,10 +32,10 @@ class Navigation:
                 self.backward()
             elif action == Action.LEFT:
                 angle = self.angle_retrieval(bbox)
-                self.turn(Action.LEFT, -35)
+                self.turn(Action.LEFT, angle)
             elif action == Action.RIGHT:
                 angle = self.angle_retrieval(bbox)
-                self.turn(Action.RIGHT, 35)
+                self.turn(Action.RIGHT, angle)
             elif action == Action.STOP:
                 self.stop()
         else :
