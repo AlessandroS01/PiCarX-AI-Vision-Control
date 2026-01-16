@@ -23,38 +23,41 @@ class WorkflowController:
 
         # selected_checkpoint = choose_element_visual()
 
-        selected_checkpoint = "B"
+        selected_checkpoint = ""
 
-        if selected_checkpoint == "A" or selected_checkpoint == "B" or selected_checkpoint == "C":
+        while selected_checkpoint not in ["A", "B", "C"]:
+            selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
 
-            try:
-                print("Detection loop started. Press Ctrl+C to stop.")
-                while True:
-                    # Capture frame
-                    frame = self.camera_controller.get_camera_image()
+            if selected_checkpoint not in ["A", "B", "C"]:
+                print("Invalid selection. Please choose A, B, or C.")
 
-                    if frame is None:
-                        continue
+            else:
+                try:
+                    print("Detection loop started. Press Ctrl+C to stop.")
+                    while True:
+                        # Capture frame
+                        frame = self.camera_controller.get_camera_image()
 
-                    # Make prediction from captured frame
-                    predicted_checkpoints = self.camera_controller.make_prediction(frame)
+                        if frame is None:
+                            continue
 
-                    for prediction in predicted_checkpoints:
-                        print(f""
-                              f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f}"
-                              f" at {prediction.bounding_box}")
+                        # Make prediction from captured frame
+                        predicted_checkpoints = self.camera_controller.make_prediction(frame)
+
+                        for prediction in predicted_checkpoints:
+                            print(f""
+                                  f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f}"
+                                  f" at {prediction.bounding_box}")
 
 
-                    if len(predicted_checkpoints) == 0:
-                        continue
+                        if len(predicted_checkpoints) == 0:
+                            continue
 
-                    self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
+                        self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
 
-            except KeyboardInterrupt:
-                print("\nUser stopped execution (Ctrl+C).")
+                except KeyboardInterrupt:
+                    print("\nUser stopped execution (Ctrl+C).")
 
-            finally:
-                Vilib.camera_close()
-                print("[Detector] Camera closed.")
-        else:
-            print("No valid checkpoint selected. Exiting workflow.")
+                finally:
+                    Vilib.camera_close()
+                    print("[Detector] Camera closed.")
