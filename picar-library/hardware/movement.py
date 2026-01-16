@@ -49,3 +49,7 @@ class Movement:
             angle(int): Angle in degrees to set the servo
         """
         self.picar.set_dir_servo_angle(angle)
+
+    def rotate(self):
+        self.picar.motor_direction_calibrate(1, -1)
+        self.forward()

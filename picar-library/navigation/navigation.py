@@ -134,3 +134,6 @@ class Navigation:
             angle (int): Angle in degrees to set the servo
         """
         self.movement.set_servo_angle(angle)
+
+    def rotate(self):
+        self.movement.rotate()

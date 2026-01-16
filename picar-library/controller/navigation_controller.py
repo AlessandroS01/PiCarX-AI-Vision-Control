@@ -13,4 +13,5 @@ class NavigationController:
             predictions: List of prediction checkpoints containing bounding box, confidence and label.
             selected_checkpoint: The checkpoint the user has selected to find.
         """
-        self.navigation.perform_action(predictions, selected_checkpoint)
+        #self.navigation.perform_action(predictions, selected_checkpoint)
+        self.navigation.rotate()
