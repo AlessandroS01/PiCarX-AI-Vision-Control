@@ -1,3 +1,5 @@
+import time
+
 from vilib import Vilib
 
 from controller.camera_controller import CameraController
@@ -34,6 +36,7 @@ class WorkflowController:
                     print("Detection loop started. Press Ctrl+C to stop.")
                     while True:
                         # Capture frame
+                        time.sleep(0.5)  # Small delay to allow camera to stabilize
                         frame = self.camera_controller.get_camera_image()
 
                         if frame is None:
