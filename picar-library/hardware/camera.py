@@ -10,7 +10,7 @@ class Camera:
 
     def start_camera(self):
         """Start the camera with specified resolution."""
-        Vilib.camera_start(vflip=True, hflip=True)
+        Vilib.camera_start(vflip=False, hflip=True)
         Vilib.display(local=False, web=True)
 
     def get_frame(self):
