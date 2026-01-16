@@ -22,7 +22,7 @@ class NavigationController:
             selected_checkpoint: The checkpoint the user has selected to find.
         """
 
-        if selected_checkpoint in [p.class_label for p in last_prediction]:
+        if last_prediction is not None and selected_checkpoint in [p.class_label for p in last_prediction]:
             self.navigation.turning_on_history(last_prediction, selected_checkpoint)
         else:
             self.navigation.turning_randomly()
