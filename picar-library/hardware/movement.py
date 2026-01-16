@@ -22,6 +22,7 @@ class Movement:
         print("Moving forward")
         time.sleep(0.1)
         self.picar.forward(self.distance)
+        self.set_servo_angle(0)
 
     def backward(self, distance=80):
         """Moves the car backward"""
@@ -40,7 +41,6 @@ class Movement:
         print(f"Turning {direction} by {angle} degrees")
         self.set_servo_angle(angle)
         self.forward()
-        self.set_servo_angle(0)
 
     def set_servo_angle(self, angle):
         """
