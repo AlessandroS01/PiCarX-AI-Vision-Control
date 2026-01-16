@@ -125,15 +125,11 @@ class Navigation:
             self.calibrate_motors(1, 1)
             self.calibrate_motors(2, -1)
 
-        self.forward()
-
     def turning_randomly(self):
         """ Rotates the car randomly to search for the checkpoint """
         print("[Navigation] Performing left motor change direction for checkpoint selection.")
         self.calibrate_motors(1, -1)
         self.calibrate_motors(2, 1)
-
-        self.forward()
 
     def stop(self):
         """Stops the car"""
@@ -175,10 +171,8 @@ class Navigation:
                 direction (int): Direction to set for calibration (1 forward or -1 backward)
         """
         self.movement.calibrate_motors(motor_index, direction)
-        self.stop()
 
     def reset_motors(self):
         """Resets the motors to default forward direction"""
         self.movement.calibrate_motors(1, 1)
         self.movement.calibrate_motors(2, 1)
-        self.stop()
