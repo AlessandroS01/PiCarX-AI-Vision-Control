@@ -24,19 +24,18 @@ class Movement:
         time.sleep(0.25)
         self.set_servo_angle(0)
 
-    def backward(self, distance=80):
+    def backward(self):
         """Moves the car backward"""
         print("Moving backward")
         self.picar.backward(self.distance)
 
-    def turn(self, direction, angle, distance=20):
+    def turn(self, direction, angle):
         """
             Turns the car in the specified direction by the given angle
 
         Args:
             direction (Action): Direction to turn ('LEFT' or 'RIGHT')
             angle (int): Angle in degrees to turn
-            distance (int): Distance to move forward after turning
         """
         print(f"Turning {direction} by {angle} degrees")
         self.set_servo_angle(angle)
