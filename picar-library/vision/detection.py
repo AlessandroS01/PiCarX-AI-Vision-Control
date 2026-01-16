@@ -29,7 +29,7 @@ class CheckpointDetector:
         Returns:
             detections: List of detected objects with bounding boxes, confidence, and class label.
         """
-        results = self.model_v12n(frame, verbose=False)[0]
+        results = self.model_v8n(frame, verbose=False)[0]
 
         detections = []
         for box in results.boxes:
@@ -40,7 +40,7 @@ class CheckpointDetector:
                 continue  # Skip low-confidence detections
 
             cls = int(box.cls[0])
-            label = self.model_v12n.names[cls]
+            label = self.model_v8n.names[cls]
 
             predicted_checkpoint = Prediction(
                 bounding_box=(x1, y1, x2, y2),
