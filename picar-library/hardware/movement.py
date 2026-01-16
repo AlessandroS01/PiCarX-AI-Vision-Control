@@ -51,7 +51,6 @@ class Movement:
 
         if motor_index in [1, 2] and direction in [1, -1]:
             self.picar.motor_direction_calibrate(motor_index, direction)
-            self.forward()
 
 
     def set_servo_angle(self, angle):
