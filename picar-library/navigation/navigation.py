@@ -176,7 +176,7 @@ class Navigation:
                 motor_index (int): Index of the motor to calibrate (1 left or 2 right)
                 direction (int): Direction to set for calibration (1 forward or -1 backward)
         """
-        time.sleep(1)
+        time.sleep(0.1)
         self.movement.calibrate_motors(motor_index, direction)
 
     def reset_motors(self):
