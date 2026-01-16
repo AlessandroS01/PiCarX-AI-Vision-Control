@@ -25,7 +25,7 @@ class WorkflowController:
 
         selected_checkpoint = "A"
 
-        if selected_checkpoint == "A" or selected_checkpoint == "B" or selected_checkpoint == "C":
+        """if selected_checkpoint == "A" or selected_checkpoint == "B" or selected_checkpoint == "C":
 
             try:
                 print("Detection loop started. Press Ctrl+C to stop.")
@@ -57,4 +57,4 @@ class WorkflowController:
                 Vilib.camera_close()
                 print("[Detector] Camera closed.")
         else:
-            print("No valid checkpoint selected. Exiting workflow.")
+            print("No valid checkpoint selected. Exiting workflow.")"""
