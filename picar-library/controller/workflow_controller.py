@@ -50,6 +50,10 @@ class WorkflowController:
                         if selected_checkpoint in [p.class_label for p in predicted_checkpoints]:
                             self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
                         else:
+                            print(""
+                                  "[Navigation] Selected checkpoint not found in current frame. "
+                                  "Using history to navigate."
+                            )
                             self.navigation_controller.perform_on_history(last_prediction, selected_checkpoint)
 
                         last_prediction = predicted_checkpoints

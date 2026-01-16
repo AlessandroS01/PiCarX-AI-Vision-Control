@@ -120,12 +120,16 @@ class Navigation:
 
         if action == Action.LEFT:
             self.calibrate_motors(1, -1)
+            self.calibrate_motors(2, 1)
         elif action == Action.RIGHT:
+            self.calibrate_motors(1, 1)
             self.calibrate_motors(2, -1)
 
     def turning_randomly(self):
         """ Rotates the car randomly to search for the checkpoint """
+        print("[Navigation] Performing left motor change direction for checkpoint selection.")
         self.calibrate_motors(1, -1)
+        self.calibrate_motors(2, 1)
 
     def stop(self):
         """Stops the car"""
