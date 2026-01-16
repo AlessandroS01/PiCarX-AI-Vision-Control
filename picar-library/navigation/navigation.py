@@ -125,9 +125,7 @@ class Navigation:
 
     def turning_randomly(self):
         """ Rotates the car randomly to search for the checkpoint """
-        import random
-        motor_index = random.choice([1, 2])
-        self.calibrate_motors(motor_index, -1)
+        self.calibrate_motors(1, -1)
 
     def stop(self):
         """Stops the car"""
