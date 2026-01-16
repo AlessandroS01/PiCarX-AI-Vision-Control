@@ -9,7 +9,7 @@ class Movement:
     """Low level class responsible for the movement of the car."""
     def __init__(self):
         self.picar = Picarx()
-        self.distance = 1
+        self.distance = 0.1
 
     def stop(self):
         """Stops the car"""
