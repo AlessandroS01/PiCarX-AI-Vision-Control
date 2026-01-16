@@ -17,7 +17,7 @@ class Movement:
         self.picar.stop()
 
 
-    def forward(self, distance=20):
+    def forward(self):
         """Moves the car forward"""
         print("Moving forward")
         self.picar.forward(self.distance)
