@@ -1,5 +1,3 @@
-import time
-
 from vilib import Vilib
 
 from controller.camera_controller import CameraController
@@ -56,7 +54,6 @@ class WorkflowController:
                                   "[Navigation] Selected checkpoint not found in current frame. "
                                   "Using history to navigate."
                             )
-                            time.sleep(0.5)
                             self.navigation_controller.perform_on_history(last_prediction, selected_checkpoint)
 
                         last_prediction = predicted_checkpoints
