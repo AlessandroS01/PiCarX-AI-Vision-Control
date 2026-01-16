@@ -23,7 +23,7 @@ class WorkflowController:
 
         # selected_checkpoint = choose_element_visual()
 
-        selected_checkpoint = "A"
+        selected_checkpoint = "B"
 
         if selected_checkpoint == "A" or selected_checkpoint == "B" or selected_checkpoint == "C":
 
