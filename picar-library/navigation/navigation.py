@@ -63,7 +63,7 @@ class Navigation:
         if percentage_check_height >= 0.25 or percentage_check_width >= 0.25:
             return Action.STOP
 
-        if percentage_check_height < 0.1:
+        if percentage_check_height < 0.05 and percentage_check_width < 0.05:
             return Action.FORWARD
 
         if x1 < 640 / 2 and x2 < 640 / 2:
