@@ -23,7 +23,7 @@ class Movement:
         self.picar.forward(self.distance)
         time.sleep(0.25)
         self.set_servo_angle(0)
-        time.sleep(0.25)
+        time.sleep(0.75)
         self.stop()
 
     def backward(self):
