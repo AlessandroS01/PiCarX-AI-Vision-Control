@@ -1,10 +1,10 @@
 .idea
 runs
 
-/picar-library/models/datasets/yolo_dataset/train/labels.cache
-/picar-library/models/datasets/yolo_dataset/valid/labels.cache
-/picar-library/models/datasets/augmented_noised_yolo_dataset/train/labels.cache
-/picar-library/models/datasets/augmented_noised_yolo_dataset/valid/labels.cache
+/picar-library/models/datasets/deprecated_versions/yolo_dataset/train/labels.cache
+/picar-library/models/datasets/deprecated_versions/yolo_dataset/valid/labels.cache
+/picar-library/models/datasets/deprecated_versions/augmented_noised_yolo_dataset/train/labels.cache
+/picar-library/models/datasets/deprecated_versions/augmented_noised_yolo_dataset/valid/labels.cache
 /picar-library/model_debug.py
 /picar-library/training.py
 /picar-library/selection.py

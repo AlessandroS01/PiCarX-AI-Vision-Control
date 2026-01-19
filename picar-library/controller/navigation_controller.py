@@ -16,11 +16,14 @@ class NavigationController:
         self.navigation.perform_action(predictions, selected_checkpoint)
 
     def perform_on_history(self, last_prediction: list[Prediction], selected_checkpoint: str):
-        """ Takes the last prediction and performs a "random" search if the checkpoint is not found in the current frame
+        """
+            Takes the last prediction and performs a "random" search if the checkpoint is not found in the current frame
         Args:
             last_prediction: The last captured prediction from the camera.
             selected_checkpoint: The checkpoint the user has selected to find.
         """
+
+        # TODO change the code here for the sliding window implementation
 
         if last_prediction is not None and selected_checkpoint in [p.class_label for p in last_prediction]:
             self.navigation.turning_on_history(last_prediction, selected_checkpoint)
