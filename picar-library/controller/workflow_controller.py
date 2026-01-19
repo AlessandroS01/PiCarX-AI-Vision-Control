@@ -59,6 +59,9 @@ class WorkflowController:
                             self.navigation_controller.perform_on_history(last_prediction, selected_checkpoint)
 
                         last_prediction = predicted_checkpoints
+
+                        # time.sleep(1) # Delay between impulses to make the camera stabilize
+
                 except KeyboardInterrupt:
                     print("\nUser stopped execution (Ctrl+C).")
 
