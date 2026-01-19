@@ -26,6 +26,19 @@ class WorkflowController:
         last_prediction = None # track history of last prediction
 
         while selected_checkpoint not in ["A", "B", "C"]:
+            first_frame = self.camera_controller.get_camera_image()
+
+            if first_frame is None:
+                continue
+
+            # Make prediction from captured frame
+            predicted_initial_checkppoints = self.camera_controller.make_prediction(first_frame)
+
+            for prediction in predicted_initial_checkppoints:
+                print(f""
+                      f"Detected: {prediction.class_label} with confidence {prediction.confidence:.2f}"
+                      f" at {prediction.bounding_box}")
+
             selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
 
             if selected_checkpoint not in ["A", "B", "C"]:
