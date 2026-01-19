@@ -25,6 +25,7 @@ class Movement:
         self.set_servo_angle(0)
         time.sleep(0.6)
         self.stop()
+        time.sleep(0.25)
 
     def backward(self):
         """Moves the car backward"""
