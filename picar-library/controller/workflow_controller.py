@@ -45,7 +45,10 @@ class WorkflowController:
                     print("Detection loop started. Press Ctrl+C to stop.")
                     while True:
                         predicted_checkpoints = self.frame_capture_prediction()[0]
+                        red_mask, red_found = VisionSystem.detect_red_bottom(self.frame)
 
+                        if red_found:
+                            self.navigation_controller.perform_on_history(last_predicted_checkpoints, selected_checkpoint)
                         self.checkpoints_printout(predicted_checkpoints)
 
                         if selected_checkpoint in [p.class_label for p in predicted_checkpoints]:
