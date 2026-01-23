@@ -38,6 +38,13 @@ class WorkflowController:
             self.checkpoints_printout(predicted_initial_checkpoints)
 
             selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
+            predicted_checkpoints, frame = self.frame_capture_prediction()
+
+            red_mask, red_found = self.vision_model.detect_red_bottom(frame)
+
+            if red_found:
+                print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
+                print("Red pixels:", cv2.countNonZero(red_mask))
 
             if selected_checkpoint not in ["A", "B", "C"]:
                 print("Invalid selection. Please choose A, B, or C.")
@@ -46,17 +53,7 @@ class WorkflowController:
                 try:
                     print("Detection loop started. Press Ctrl+C to stop.")
                     while True:
-                        predicted_checkpoints, frame = self.frame_capture_prediction()
-
-                        red_mask, red_found = self.vision_model.detect_red_bottom(frame)
-
-                        if red_found:
-                              print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
-                              print("Red pixels:", cv2.countNonZero(red_mask))
-
-                              self.navigation_controller.perform_on_history(
-                              last_predicted_checkpoints, selected_checkpoint
-                            )
+                        
                         
                         predicted_checkpoints = self.frame_capture_prediction()[0]
                         
