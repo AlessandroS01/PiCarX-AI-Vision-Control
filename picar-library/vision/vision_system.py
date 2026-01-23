@@ -44,21 +44,24 @@ class VisionSystem:
 
     # Convert ROI to grayscale
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+        # Red must be dominant
+        red_dominant = (r > 120) & (r > g + 30) & (r > b + 30)
 
-    # Enhance red regions
-        red_emphasis = cv2.subtract(gray, b)
+    # Grayscale constraint (avoid dark road)
+        bright_enough = gray > 80
 
-    # Threshold
-        _, red_mask = cv2.threshold(
-            red_emphasis, threshold, 255, cv2.THRESH_BINARY_INV
-        )
+    # Final red mask
+        red_mask = np.zeros_like(gray, dtype=np.uint8)
+        red_mask[red_dominant & bright_enough] = 255
 
-    # Remove noise
-        kernel = np.ones((5,5), np.uint8)
+    # Clean noise
+        kernel = np.ones((5, 5), np.uint8)
         red_mask = cv2.morphologyEx(red_mask, cv2.MORPH_OPEN, kernel)
 
-    # Decision: is red present?
         red_pixel_count = cv2.countNonZero(red_mask)
-        red_detected = red_pixel_count > 300   # tune for  camera
+        print("Red pixels:", red_pixel_count)
+
+        red_detected = red_pixel_count > 800  # realistic threshold
 
         return red_mask, red_detected
+    
