@@ -48,6 +48,7 @@ class WorkflowController:
                         red_mask, red_found = VisionSystem.detect_red_bottom(self.frame)
 
                         if red_found:
+                            print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
                             self.navigation_controller.perform_on_history(last_predicted_checkpoints, selected_checkpoint)
                         self.checkpoints_printout(predicted_checkpoints)
 
