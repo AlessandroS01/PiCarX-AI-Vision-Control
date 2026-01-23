@@ -35,13 +35,9 @@ class VisionSystem:
         red_detected (bool): True if red is detected in road area
     """
 
-        height, width = [480, 640]
-
     # Define bottom ROI
         #roi_start = int(height * (1 - roi_height_ratio))
-       
-        roi = frame[240:480, 0:640]
-
+        roi = frame[340:480, 0:640]
    
     # Split channels
         b, g, r = cv2.split(roi)
@@ -54,8 +50,8 @@ class VisionSystem:
 
     # Threshold
         _, red_mask = cv2.threshold(
-        red_emphasis, threshold, 255, cv2.THRESH_BINARY_INV
-    )
+            red_emphasis, threshold, 255, cv2.THRESH_BINARY_INV
+        )
 
     # Remove noise
         kernel = np.ones((5,5), np.uint8)
