@@ -21,7 +21,7 @@ class VisionSystem:
         """
         return self.checkpoint_detector.detect_checkpoint_frame(frame)
 
-    def detect_red_bottom(frame, roi_height_ratio=0.4, threshold=50):
+    def detect_red_bottom(self,frame, roi_height_ratio=0.4, threshold=50):
         """
     Detect red color only in the bottom region of the frame.
 
