@@ -59,9 +59,9 @@ class VisionSystem:
         red_mask = cv2.morphologyEx(red_mask, cv2.MORPH_OPEN, kernel)
 
         red_pixel_count = cv2.countNonZero(red_mask)
-        print("Red pixels:", red_pixel_count)
+       
 
-        red_detected = red_pixel_count > 800  # realistic threshold
+        red_detected = red_pixel_count > 5000  # realistic threshold
 
         return red_mask, red_detected
     
