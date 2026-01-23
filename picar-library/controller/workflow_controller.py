@@ -1,5 +1,7 @@
 import time
 
+import cv2
+
 from vilib import Vilib
 
 from controller.camera_controller import CameraController
@@ -50,10 +52,12 @@ class WorkflowController:
 
                         if red_found:
                               print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
+                              print("Red pixels:", cv2.countNonZero(red_mask))
+
                               self.navigation_controller.perform_on_history(
                               last_predicted_checkpoints, selected_checkpoint
                             )
-                        continue
+                        
                         predicted_checkpoints = self.frame_capture_prediction()[0]
                         
                         self.checkpoints_printout(predicted_checkpoints)
