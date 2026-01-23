@@ -39,7 +39,9 @@ class VisionSystem:
 
     # Define bottom ROI
         #roi_start = int(height * (1 - roi_height_ratio))
-        roi = frame[0:width, 240:height ]
+       
+        roi = frame[240:480, 0:640]
+
    
     # Split channels
         b, g, r = cv2.split(roi)
