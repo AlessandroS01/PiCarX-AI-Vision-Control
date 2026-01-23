@@ -40,7 +40,6 @@ class WorkflowController:
             self.checkpoints_printout(predicted_initial_checkpoints)
 
             selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
-            predicted_checkpoints, frame = self.frame_capture_prediction()
 
             if selected_checkpoint not in ["A", "B", "C"]:
                 print("Invalid selection. Please choose A, B, or C.")
@@ -49,7 +48,7 @@ class WorkflowController:
                 try:
                     print("Detection loop started. Press Ctrl+C to stop.")
                     while True:
-                        predicted_checkpoints = self.frame_capture_prediction()[0]
+                        predicted_checkpoints, frame = self.frame_capture_prediction()
                         
                         self.checkpoints_printout(predicted_checkpoints)
 
