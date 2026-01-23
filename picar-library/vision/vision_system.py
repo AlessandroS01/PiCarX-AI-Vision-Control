@@ -35,7 +35,7 @@ class VisionSystem:
         red_detected (bool): True if red is detected in road area
     """
 
-        height, width, _ = [640, 480]
+        height, width = [640, 480]
 
     # Define bottom ROI
         roi_start = int(height * (1 - roi_height_ratio))
