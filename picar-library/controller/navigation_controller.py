@@ -32,4 +32,5 @@ class NavigationController:
 
     def boundary_avoidance(self):
         """ Perform boundary avoidance maneuver """
+        self.navigation.reset_motors()
         self.navigation.backward()
