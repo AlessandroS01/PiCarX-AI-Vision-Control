@@ -69,10 +69,10 @@ class WorkflowController:
                                   "Using history to navigate."
                             )
 
-                            """self.navigation_controller.perform_on_history(
+                            self.navigation_controller.perform_on_history(
                                 last_predicted_checkpoints,
                                 selected_checkpoint
-                            )"""
+                            )
 
                         # self.sliding_window_manager(last_predictions_window, predicted_checkpoints, size=5)
 
