@@ -32,7 +32,7 @@ class WorkflowController:
 
             red_mask, red_found = self.vision_model.detect_red_bottom(frame)
 
-            if red_found:
+            if red_found and cv2.countNonZero(red_mask) > 5000:
                 print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
                 print("Red pixels:", cv2.countNonZero(red_mask))
 
