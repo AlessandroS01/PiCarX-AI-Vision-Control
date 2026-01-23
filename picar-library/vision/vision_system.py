@@ -35,7 +35,7 @@ class VisionSystem:
         red_detected (bool): True if red is detected in road area
     """
 
-        height, width, _ = frame.shape
+        height, width, _ = [640, 480]
 
     # Define bottom ROI
         roi_start = int(height * (1 - roi_height_ratio))
@@ -61,6 +61,6 @@ class VisionSystem:
 
     # Decision: is red present?
         red_pixel_count = cv2.countNonZero(red_mask)
-        red_detected = red_pixel_count > 300   # tune for your camera
+        red_detected = red_pixel_count > 300   # tune for  camera
 
         return red_mask, red_detected
