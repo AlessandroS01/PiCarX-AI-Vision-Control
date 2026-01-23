@@ -29,3 +29,8 @@ class NavigationController:
             self.navigation.turning_on_history(last_prediction, selected_checkpoint)
         else:
             self.navigation.turning_randomly()
+
+    def boundary_avoidance(self):
+        """ Perform boundary avoidance maneuver """
+        self.navigation.backward()
+        self.navigation.backward()

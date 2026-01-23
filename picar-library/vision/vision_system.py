@@ -21,14 +21,13 @@ class VisionSystem:
         """
         return self.checkpoint_detector.detect_checkpoint_frame(frame)
 
-    def detect_red_bottom(self,frame, roi_height_ratio=0.4, threshold=50):
+    def detect_red_bottom(self,frame, red_threshold = 5000):
         """
     Detect red color only in the bottom region of the frame.
 
     Args:
         frame (numpy array): BGR image from PiCar-X camera
-        roi_height_ratio (float): fraction of image height used as road area
-        threshold (int): sensitivity threshold for red detection
+        red_threshold (int): sensitivity threshold for red detection
 
     Returns:
         red_mask (numpy array): binary mask of detected red area
@@ -59,9 +58,8 @@ class VisionSystem:
         red_mask = cv2.morphologyEx(red_mask, cv2.MORPH_OPEN, kernel)
 
         red_pixel_count = cv2.countNonZero(red_mask)
-       
 
-        red_detected = red_pixel_count > 5000  # realistic threshold
+        red_detected = red_pixel_count > red_threshold  # realistic threshold
 
-        return red_mask, red_detected
+        return red_detected
     

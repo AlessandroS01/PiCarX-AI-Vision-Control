@@ -27,16 +27,6 @@ class WorkflowController:
         selected_checkpoint = ""
 
 
-        while True:
-            predicted_checkpoints, frame = self.frame_capture_prediction()
-
-            red_mask, red_found = self.vision_model.detect_red_bottom(frame)
-
-            if red_found :
-                print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
-                print("Red pixels:", cv2.countNonZero(red_mask))
-
-
 
         """ Remove this comments to enable sliding window history functionality """
         # last_predictions_window = [] # track history of last prediction
@@ -52,12 +42,6 @@ class WorkflowController:
             selected_checkpoint = input("Select checkpoint to detect (A, B, C): ").upper()
             predicted_checkpoints, frame = self.frame_capture_prediction()
 
-            red_mask, red_found = self.vision_model.detect_red_bottom(frame)
-
-            if red_found:
-                print("[Red Detection] Red area detected in bottom region. Stopping navigation.")
-                print("Red pixels:", cv2.countNonZero(red_mask))
-
             if selected_checkpoint not in ["A", "B", "C"]:
                 print("Invalid selection. Please choose A, B, or C.")
 
@@ -65,21 +49,31 @@ class WorkflowController:
                 try:
                     print("Detection loop started. Press Ctrl+C to stop.")
                     while True:
-                        
-                        
                         predicted_checkpoints = self.frame_capture_prediction()[0]
                         
                         self.checkpoints_printout(predicted_checkpoints)
 
                         if selected_checkpoint in [p.class_label for p in predicted_checkpoints]:
-                            self.navigation_controller.perform_action(predicted_checkpoints, selected_checkpoint)
+                            self.navigation_controller.perform_action(
+                                predicted_checkpoints,
+                                selected_checkpoint
+                            )
                         else:
+                            boundary_found = self.vision_model.detect_red_bottom(frame, red_threshold=5000)
+
+                            if boundary_found:
+                                print("[Red Detection] Red area detected in bottom region spotted.")
+                                self.navigation_controller.boundary_avoidance()
+
                             print(""
                                   "[Navigation] Selected checkpoint not found in current frame. "
                                   "Using history to navigate."
                             )
 
-                            self.navigation_controller.perform_on_history(last_predicted_checkpoints, selected_checkpoint)
+                            self.navigation_controller.perform_on_history(
+                                last_predicted_checkpoints,
+                                selected_checkpoint
+                            )
 
                         # self.sliding_window_manager(last_predictions_window, predicted_checkpoints, size=5)
 
