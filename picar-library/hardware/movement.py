@@ -31,7 +31,7 @@ class Movement:
         """Moves the car backward"""
         print("Moving backward")
         self.picar.backward(self.distance)
-        time.sleep(1.5)
+        time.sleep(0.75)
         self.set_servo_angle(0)
         time.sleep(0.6)
         self.stop()
