@@ -59,6 +59,8 @@ class VisionSystem:
 
         red_pixel_count = cv2.countNonZero(red_mask)
 
+        print(red_pixel_count)
+
         red_detected = red_pixel_count > red_threshold  # realistic threshold
 
         return red_detected
