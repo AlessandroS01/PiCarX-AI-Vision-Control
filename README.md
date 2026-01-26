@@ -24,4 +24,4 @@ Key components:
 
 ## Architecture
 The system architecture diagram is the following:
-![Architecture.svg](Presentations/Architecture.svg)
+![Architecture](Presentations/Architecture.svg)
