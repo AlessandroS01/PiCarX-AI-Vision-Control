@@ -22,7 +22,8 @@ class CheckpointDetector:
         # model_path_v12n = os.path.join(base_dir, "models", "best_v12n.pt")
         # self.model_v12n = YOLO(model_path_v12n) if model is None else model
 
-        model_path_final_v12n = os.path.join(base_dir, "models", "final_best_v12n_model.pt")
+        """model_path_final_v12n = os.path.join(base_dir, "models", "final_best_v12n_model.pt")"""
+        model_path_final_v12n = os.path.join(base_dir, "models", "best_v26n.pt")
         self.final_model_v12n = YOLO(model_path_final_v12n) if model is None else model
 
     def detect_checkpoint_frame(self, frame) -> list[Prediction]:

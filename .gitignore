@@ -9,3 +9,5 @@ runs
 /picar-library/training.py
 /picar-library/selection.py
 /picar-library/graph.py
+/picar-library/models/datasets/final_augmented_dataset/yolo/train/labels.cache
+/picar-library/models/datasets/final_augmented_dataset/yolo/valid/labels.cache
