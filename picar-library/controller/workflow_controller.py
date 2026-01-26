@@ -58,7 +58,7 @@ class WorkflowController:
                                 selected_checkpoint
                             )
                         else:
-                            boundary_found = self.vision_model.detect_red_bottom(frame, red_threshold=7000)
+                            boundary_found = self.vision_model.detect_red_bottom(frame, red_threshold=10000)
 
                             if boundary_found:
                                 print("[Red Detection] Red area detected in bottom region spotted.")
